@@ -12,10 +12,10 @@ from airflow.operators.python_operator import BranchPythonOperator
 from google_drive_downloader import GoogleDriveDownloader as gdd
 
 DATA_DIR = "/usr/local/share/data"
-ANSWERS_FILE_GG_ID = "14iHHE3DCZIkCaOU0f4s7p1pMEAIl6r9c"
-QUESTIONS_FILE_GG_ID = "14cV5PfcDwqvhEIWTua2OarSoNnKmRylT"
-QUESTIONS_FILE = "QuestionSamples.csv"
-ANSWERS_FILE = "AnswerSamples.csv"
+ANSWERS_FILE_GG_ID = ""
+QUESTIONS_FILE_GG_ID = ""
+QUESTIONS_FILE = "Questions.csv"
+ANSWERS_FILE = "Answers.csv"
 OUTPUT_DIR = "output"
 
 MONGODB_CLOUD_URI = "mongodb://admin:password@mongo:27017/stackoverflow?authSource=admin"
@@ -100,9 +100,8 @@ with DAG(dag_id="dep303_asm2",
 
     clear_file = BashOperator(
         task_id="clear_file",
-        bash_command="rm -f {} {}".format(
-            os.path.join(DATA_DIR, QUESTIONS_FILE),
-            os.path.join(DATA_DIR, ANSWERS_FILE)
+        bash_command="rm -f {}/*".format(
+            os.path.join(DATA_DIR)
         )
     )
 
