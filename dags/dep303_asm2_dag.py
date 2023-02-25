@@ -146,7 +146,7 @@ with DAG(dag_id="dep303_asm2",
     )
 
     spark_process = SparkSubmitOperator(
-        task_id="spark_submit_task",
+        task_id="spark_process",
         application =SPARK_FILE,
         conn_id=SPARK_CONN,
         packages="org.mongodb.spark:mongo-spark-connector_2.12:10.1.1"

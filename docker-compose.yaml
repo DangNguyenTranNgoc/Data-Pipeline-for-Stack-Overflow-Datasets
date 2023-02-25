@@ -248,7 +248,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
-      - mongo-db-volumne:/data/db
+      - mongo-db-volumne:/data/db/
       - ./data/:/usr/local/share/
     
   spark-master:
@@ -260,9 +260,10 @@ services:
     ports:
       - "8181:8080"
     volumes:
-      - ./spark/:/usr/local/share/
+      - ./spark/:/usr/local/share/spark/
+      - ./data:/usr/local/share/data/
 
-  spark-worker-1:
+  spark-worker:
     image: bitnami/spark:3.3.2
     user: root
     environment:
